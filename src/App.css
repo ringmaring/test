@@ -1,9 +1,11 @@
+/* 기본 배경 및 폰트 설정 */
 body {
   margin: 0;
   background: linear-gradient(to bottom right, #f0f4ff, #dbeafe);
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+/* 전체 앱 컨테이너 */
 .app-container {
   min-height: 100vh;
   display: flex;
@@ -12,6 +14,7 @@ body {
   padding: 2rem;
 }
 
+/* 질문 카드 */
 .card {
   background-color: #ffffff;
   border-radius: 24px;
@@ -22,6 +25,7 @@ body {
   text-align: center;
 }
 
+/* 제목 */
 .title {
   font-size: 2rem;
   font-weight: 700;
@@ -29,17 +33,20 @@ body {
   margin-bottom: 1.5rem;
 }
 
+/* 질문 텍스트 */
 .question {
   font-size: 1.2rem;
   color: #374151;
   margin-bottom: 1.5rem;
 }
 
+/* 질문 번호 강조 */
 .question-number {
   font-weight: 600;
   color: #1e40af;
 }
 
+/* 점수 버튼 정렬 */
 .button-group {
   display: flex;
   justify-content: center;
@@ -47,6 +54,7 @@ body {
   margin-bottom: 1rem;
 }
 
+/* 점수 버튼 스타일 + 애니메이션 */
 .score-button {
   background-color: #3b82f6;
   color: white;
@@ -56,18 +64,26 @@ body {
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: transform 0.1s ease, background-color 0.2s ease;
 }
 
 .score-button:hover {
   background-color: #2563eb;
+  transform: scale(1.05);
 }
 
+.score-button:active {
+  transform: scale(0.95);
+  background-color: #1e40af;
+}
+
+/* 문항 진행률 표시 */
 .progress {
   font-size: 0.9rem;
   color: #6b7280;
 }
 
+/* 완료 화면 제목 */
 .complete-title {
   font-size: 2rem;
   font-weight: 700;
@@ -75,12 +91,14 @@ body {
   margin-bottom: 1rem;
 }
 
+/* 결과 텍스트 */
 .result {
   font-size: 1.1rem;
   color: #374151;
   margin-bottom: 0.5rem;
 }
 
+/* 점수 강조 색상 */
 .highlight {
   color: #2563eb;
   font-weight: 600;
@@ -90,6 +108,7 @@ body {
   color: #d97706;
 }
 
+/* 결과 설명 */
 .note {
   margin-top: 1.25rem;
   font-size: 0.85rem;
