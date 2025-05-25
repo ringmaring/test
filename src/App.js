@@ -27,33 +27,32 @@ export default function App() {
   const average = answers.length > 0 ? (answers.reduce((a, b) => a + b, 0) / answers.length).toFixed(1) : 0;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-blue-100 flex flex-col items-center justify-center px-4 py-10 font-sans text-center">
-      <div className="w-full max-w-xl bg-white shadow-2xl rounded-3xl p-8 transition-all">
+    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-blue-200 flex items-center justify-center px-4 py-16">
+      <div className="w-full max-w-2xl bg-white/90 backdrop-blur-md shadow-2xl rounded-3xl p-10 border border-blue-100">
         {!completed ? (
           <>
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6">
-              Q{currentQuestion + 1}. {questions[currentQuestion]}
-            </h2>
-            <div className="flex justify-center gap-4">
+            <h1 className="text-3xl sm:text-4xl font-bold text-blue-800 mb-6">디지털 적응력 테스트</h1>
+            <p className="text-lg sm:text-xl text-gray-700 mb-6">Q{currentQuestion + 1}. {questions[currentQuestion]}</p>
+            <div className="grid grid-cols-5 gap-4 mb-4">
               {[1, 2, 3, 4, 5].map((num) => (
                 <button
                   key={num}
                   onClick={() => handleAnswer(num)}
-                  className="px-5 py-3 bg-blue-600 text-white rounded-xl shadow hover:bg-blue-700 hover:scale-105 transition-transform duration-200"
+                  className="py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-md transition-all"
                 >
                   {num}점
                 </button>
               ))}
             </div>
-            <p className="mt-4 text-sm text-gray-500">총 {questions.length}문항 중 {currentQuestion + 1}번째 질문</p>
+            <p className="text-sm text-gray-500">({currentQuestion + 1}/{questions.length})</p>
           </>
         ) : (
-          <>
-            <h2 className="text-3xl font-bold text-green-600 mb-4">🎉 설문이 완료되었습니다!</h2>
-            <p className="text-lg text-gray-700">응답한 점수: <span className="font-semibold">{answers.join(', ')}</span></p>
-            <p className="mt-2 text-base text-gray-600">평균 점수: <span className="font-bold text-blue-600">{average}점</span></p>
-            <p className="mt-4 text-sm text-gray-400">이 결과는 사용자의 키오스크 적응력을 파악하는 데 활용됩니다.</p>
-          </>
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-green-700 mb-2">🎉 설문 완료!</h2>
+            <p className="text-gray-700 text-lg">응답 점수: <span className="font-medium text-blue-600">{answers.join(', ')}</span></p>
+            <p className="text-base text-gray-600 mt-2">평균 점수: <span className="font-bold text-pink-600">{average}점</span></p>
+            <p className="text-sm text-gray-400 mt-4">이 결과는 키오스크 적응력을 파악하는 데 사용됩니다.</p>
+          </div>
         )}
       </div>
     </div>
