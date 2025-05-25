@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './App.css';
 
 const questions = [
   "키오스크 화면의 글씨를 읽는 것이 쉬웠나요?",
@@ -25,47 +24,61 @@ export default function App() {
     }
   };
 
-  const average = answers.length > 0 ? (answers.reduce((a, b) => a + b, 0) / answers.length).toFixed(1) : 0;
+  const average = answers.length > 0
+    ? (answers.reduce((a, b) => a + b, 0) / answers.length).toFixed(1)
+    : 0;
 
   return (
     <div style={{
       minHeight: '100vh',
+      background: 'linear-gradient(to bottom right, #f0f4ff, #dbeafe)',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      background: 'linear-gradient(to top right, #eef2ff, #dbeafe)',
-      fontFamily: 'sans-serif',
+      fontFamily: 'Helvetica, sans-serif',
       padding: '2rem'
     }}>
       <div style={{
+        backgroundColor: '#ffffff',
+        borderRadius: '24px',
+        boxShadow: '0 12px 30px rgba(0,0,0,0.1)',
+        padding: '2.5rem',
         maxWidth: '600px',
         width: '100%',
-        backgroundColor: 'white',
-        borderRadius: '24px',
-        boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
-        padding: '2rem',
         textAlign: 'center'
       }}>
         {!completed ? (
           <>
-            <h1 style={{ fontSize: '1.8rem', fontWeight: '700', color: '#1e3a8a', marginBottom: '1.5rem' }}>디지털 적응력 테스트</h1>
-            <p style={{ fontSize: '1.1rem', color: '#374151', marginBottom: '1.5rem' }}>
+            <h1 style={{
+              fontSize: '2rem',
+              fontWeight: '700',
+              color: '#1d4ed8',
+              marginBottom: '1.5rem'
+            }}>
+              디지털 적응력 테스트
+            </h1>
+            <p style={{
+              fontSize: '1.2rem',
+              color: '#374151',
+              marginBottom: '1.5rem'
+            }}>
               <strong>Q{currentQuestion + 1}.</strong> {questions[currentQuestion]}
             </p>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', marginBottom: '1rem' }}>
-              {[1, 2, 3, 4, 5].map((num) => (
+              {[1, 2, 3, 4, 5].map(num => (
                 <button
                   key={num}
                   onClick={() => handleAnswer(num)}
                   style={{
-                    padding: '0.75rem 1.25rem',
                     backgroundColor: '#3b82f6',
                     color: 'white',
                     border: 'none',
-                    borderRadius: '12px',
+                    borderRadius: '10px',
+                    padding: '0.75rem 1.2rem',
+                    fontSize: '1rem',
                     fontWeight: '600',
                     cursor: 'pointer',
-                    transition: '0.2s',
+                    transition: 'all 0.2s ease'
                   }}
                   onMouseOver={e => e.currentTarget.style.backgroundColor = '#2563eb'}
                   onMouseOut={e => e.currentTarget.style.backgroundColor = '#3b82f6'}
@@ -74,15 +87,30 @@ export default function App() {
                 </button>
               ))}
             </div>
-            <p style={{ fontSize: '0.9rem', color: '#6b7280' }}>({currentQuestion + 1}/{questions.length} 문항)</p>
+            <p style={{ fontSize: '0.9rem', color: '#6b7280' }}>
+              ({currentQuestion + 1}/{questions.length} 문항)
+            </p>
           </>
         ) : (
-          <div>
-            <h2 style={{ fontSize: '2rem', color: '#059669', fontWeight: '700', marginBottom: '1rem' }}>🎉 설문 완료!</h2>
-            <p style={{ fontSize: '1.1rem', color: '#1f2937' }}>응답 점수: <strong style={{ color: '#2563eb' }}>{answers.join(', ')}</strong></p>
-            <p style={{ marginTop: '1rem', fontSize: '1rem', color: '#4b5563' }}>평균 점수: <strong style={{ color: '#d97706' }}>{average}점</strong></p>
-            <p style={{ marginTop: '1rem', fontSize: '0.85rem', color: '#9ca3af' }}>이 결과는 키오스크 적응력을 파악하는 데 사용됩니다.</p>
-          </div>
+          <>
+            <h2 style={{
+              fontSize: '2rem',
+              fontWeight: '700',
+              color: '#10b981',
+              marginBottom: '1rem'
+            }}>
+              🎉 설문 완료!
+            </h2>
+            <p style={{ fontSize: '1.1rem', color: '#374151' }}>
+              응답 점수: <strong style={{ color: '#2563eb' }}>{answers.join(', ')}</strong>
+            </p>
+            <p style={{ marginTop: '1rem', fontSize: '1rem', color: '#4b5563' }}>
+              평균 점수: <strong style={{ color: '#d97706' }}>{average}점</strong>
+            </p>
+            <p style={{ marginTop: '1.25rem', fontSize: '0.85rem', color: '#9ca3af' }}>
+              이 결과는 키오스크 적응력을 파악하는 데 사용됩니다.
+            </p>
+          </>
         )}
       </div>
     </div>
