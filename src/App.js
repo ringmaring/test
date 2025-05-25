@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './App.css';
 
 const questions = [
   "키오스크 화면의 글씨를 읽는 것이 쉬웠나요?",
@@ -29,87 +30,29 @@ export default function App() {
     : 0;
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      background: 'linear-gradient(to bottom right, #f0f4ff, #dbeafe)',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      fontFamily: 'Helvetica, sans-serif',
-      padding: '2rem'
-    }}>
-      <div style={{
-        backgroundColor: '#ffffff',
-        borderRadius: '24px',
-        boxShadow: '0 12px 30px rgba(0,0,0,0.1)',
-        padding: '2.5rem',
-        maxWidth: '600px',
-        width: '100%',
-        textAlign: 'center'
-      }}>
+    <div className="app-container">
+      <div className="card">
         {!completed ? (
           <>
-            <h1 style={{
-              fontSize: '2rem',
-              fontWeight: '700',
-              color: '#1d4ed8',
-              marginBottom: '1.5rem'
-            }}>
-              디지털 적응력 테스트
-            </h1>
-            <p style={{
-              fontSize: '1.2rem',
-              color: '#374151',
-              marginBottom: '1.5rem'
-            }}>
-              <strong>Q{currentQuestion + 1}.</strong> {questions[currentQuestion]}
+            <h1 className="title">디지털 적응력 테스트</h1>
+            <p className="question">
+              <span className="question-number">Q{currentQuestion + 1}.</span> {questions[currentQuestion]}
             </p>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', marginBottom: '1rem' }}>
-              {[1, 2, 3, 4, 5].map(num => (
-                <button
-                  key={num}
-                  onClick={() => handleAnswer(num)}
-                  style={{
-                    backgroundColor: '#3b82f6',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '10px',
-                    padding: '0.75rem 1.2rem',
-                    fontSize: '1rem',
-                    fontWeight: '600',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s ease'
-                  }}
-                  onMouseOver={e => e.currentTarget.style.backgroundColor = '#2563eb'}
-                  onMouseOut={e => e.currentTarget.style.backgroundColor = '#3b82f6'}
-                >
+            <div className="button-group">
+              {[1, 2, 3, 4, 5].map((num) => (
+                <button key={num} onClick={() => handleAnswer(num)} className="score-button">
                   {num}점
                 </button>
               ))}
             </div>
-            <p style={{ fontSize: '0.9rem', color: '#6b7280' }}>
-              ({currentQuestion + 1}/{questions.length} 문항)
-            </p>
+            <p className="progress">({currentQuestion + 1}/{questions.length} 문항)</p>
           </>
         ) : (
           <>
-            <h2 style={{
-              fontSize: '2rem',
-              fontWeight: '700',
-              color: '#10b981',
-              marginBottom: '1rem'
-            }}>
-              🎉 설문 완료!
-            </h2>
-            <p style={{ fontSize: '1.1rem', color: '#374151' }}>
-              응답 점수: <strong style={{ color: '#2563eb' }}>{answers.join(', ')}</strong>
-            </p>
-            <p style={{ marginTop: '1rem', fontSize: '1rem', color: '#4b5563' }}>
-              평균 점수: <strong style={{ color: '#d97706' }}>{average}점</strong>
-            </p>
-            <p style={{ marginTop: '1.25rem', fontSize: '0.85rem', color: '#9ca3af' }}>
-              이 결과는 키오스크 적응력을 파악하는 데 사용됩니다.
-            </p>
+            <h2 className="complete-title">🎉 설문 완료!</h2>
+            <p className="result">응답 점수: <span className="highlight">{answers.join(', ')}</span></p>
+            <p className="result">평균 점수: <span className="highlight average">{average}점</span></p>
+            <p className="note">이 결과는 키오스크 적응력을 파악하는 데 사용됩니다.</p>
           </>
         )}
       </div>
